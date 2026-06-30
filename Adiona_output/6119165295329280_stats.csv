@@ -1,0 +1,17 @@
+"zone","shift","routeClient","vehicle","cost","rateZone","drivingDistance","drivingTime","totalTime","co2","d1","d2"
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3901,"VAN8","$4.50","Melbourne Metro",118990,13648,19348,"35kg",104.80000000000004,95
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3902,"VAN13","$4.50","Melbourne Metro",131733,14910,20730,"39kg",108.60000000000002,97
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3903,"VAN11","$4.50","Melbourne Metro",191795,19094,24134,"57kg",88.8,84
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3904,"VAN9","$4.50","Melbourne Metro",184315,17216,22076,"54kg",89.4,81
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3905,"VAN16","$4.50","Melbourne Metro",187266,17964,22884,"55kg",88.20000000000002,82
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3906,"VAN2","$4.50","Melbourne Metro",185529,18024,22704,"55kg",86.6,78
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3907,"VAN5","$4.66","Melbourne Metro",221318,20885,25085,"65kg",84.2,70
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3908,"VAN17","$4.50","Melbourne Metro",175019,16763,21683,"52kg",88,82
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3909,"VAN4","$4.50","Melbourne Metro",165172,16353,21213,"49kg",87.60000000000001,81
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3910,"VAN12","$4.50","Melbourne Metro",136828,13945,18925,"40kg",89.6,83
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3911,"VAN3","$4.50","Melbourne Metro",153943,15140,19880,"45kg",86.00000000000001,79
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3912,"VAN14","$4.50","Melbourne Metro",172266,15912,20652,"51kg",82.79999999999998,79
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3913,"VAN10","$4.50","Melbourne Metro",159055,16960,21640,"47kg",85.19999999999997,78
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3914,"VAN6","$4.50","Melbourne Metro",195897,18521,23201,"58kg",91.20000000000002,78
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3915,"VAN15","$4.50","Melbourne Metro",187630,18762,23082,"55kg",84.40000000000002,72
+"VIC Melbourne Metro & VIC Melbourne Metro Inner","night",3916,"VAN1","$4.50","Melbourne Metro",170123,16979,21719,"50kg",88.2,79

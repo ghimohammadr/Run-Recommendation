@@ -1,0 +1,27 @@
+zone,shift,routeClient,vehicle,cost,rateZone,drivingDistance,drivingTime,totalTime,co2,d1,d2
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,0,VAN20,$251.07 ,Melbourne Metro,114851,9546,11596,80kg,18,17
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,1,VAN14,$640.66 ,Melbourne Metro,167423,21694,32344,117kg,78.8,70
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,2,VAN13,$687.10 ,Melbourne Metro,173738,24641,34816,121kg,81.2,71
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,3,VAN16,$595.92 ,Melbourne Metro,167066,22677,29837,116kg,56.8,51
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,4,VAN17,$536.11 ,Melbourne Metro,104964,16931,27836,73kg,71.2,66
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,5,VAN26,$727.09 ,Melbourne Metro,189618,25920,36716,132kg,77.6,68
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,6,VAN9,$503.09 ,Melbourne Metro,86204,14501,26391,60kg,85.8,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,7,VAN22,$481.91 ,Melbourne Metro,78751,13319,25364,55kg,83.4,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,8,VAN12,$600.71 ,Melbourne Metro,116131,18339,31223,81kg,89.6,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,9,VAN4,$768.45 ,Melbourne Metro,208064,29140,38637,145kg,87.8,79
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,10,VAN1,$512.31 ,Melbourne Metro,87277,14812,26886,61kg,87.4,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,11,VAN2,$702.64 ,Melbourne Metro,157117,24075,36054,109kg,85.4,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,12,VAN11,$419.66 ,Melbourne Metro,63549,11891,22198,44kg,82.4,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,13,VAN15,$390.19 ,Melbourne Metro,60220,10913,20614,42kg,87.4,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,14,VAN25,$602.74 ,Melbourne Metro,143502,21113,30737,100kg,84.2,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,15,VAN5,$475.25 ,Melbourne Metro,83790,15235,24879,58kg,92,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,16,VAN19,$479.69 ,Melbourne Metro,85886,13793,25083,60kg,91.8,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,17,VAN18,$450.51 ,Melbourne Metro,63645,12424,23930,44kg,87.4,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,18,VAN23,$694.69 ,Melbourne Metro,185918,24099,34976,130kg,87,78
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,19,VAN21,$658.46 ,Melbourne Metro,146975,22183,33793,102kg,86,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,20,VAN10,$592.21 ,Melbourne Metro,129629,20300,30449,90kg,85,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,21,VAN24,$447.93 ,Melbourne Metro,83990,13712,23339,59kg,84.6,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,22,VAN7,$514.27 ,Melbourne Metro,102462,16031,26663,71kg,90.2,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,23,VAN6,$699.46 ,Melbourne Metro,191117,26393,35130,133kg,77.6,67
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,24,VAN8,$654.13 ,Melbourne Metro,162926,23249,33200,114kg,89.8,80
+VIC Melbourne Metro & VIC Mornington Peninsula & VIC Melbourne Metro Inner,day,25,VAN3,$682.37 ,Melbourne Metro,160575,24140,34839,112kg,93.6,80

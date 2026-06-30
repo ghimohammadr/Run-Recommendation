@@ -1,0 +1,8 @@
+"zone","shift","routeClient","vehicle","cost","rateZone","drivingDistance","drivingTime","totalTime","co2","d1","d2"
+"VIC Melbourne Metro & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3001,"VAN5","$487.82","Truck",115060,11931,24900,"80kg",28,28
+"VIC Melbourne Metro & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3002,"VAN1","$420.61","Truck",51238,8463,22521,"36kg",30,30
+"VIC Melbourne Metro & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3003,"VAN4","$512.78","Truck",108725,13648,26442,"76kg",27,27
+"VIC Melbourne Metro & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3004,"VAN6","$463.80","Truck",108582,11711,23692,"76kg",25,25
+"VIC Melbourne Metro & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3005,"VAN3","$470.62","Truck",82741,10142,24642,"58kg",30,30
+"VIC Melbourne Metro & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3006,"VAN2","$427.36","Truck",90502,8202,22040,"63kg",21,21
+"VIC Bendigo","day",3007,"VAN1","$281.74","Truck",115069,6946,13315,"80kg",12,12

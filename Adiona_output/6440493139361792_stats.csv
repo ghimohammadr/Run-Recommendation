@@ -1,0 +1,52 @@
+"zone","shift","routeClient","vehicle","cost","rateZone","drivingDistance","drivingTime","totalTime","co2","d1","d2"
+"VIC Ballarat","day",3300,"VAN1","$4.34","VIC Ballarat",333762,22523,31883,"98kg",92.2,78
+"VIC Ballarat","day",3301,"VAN11","$4.26","VIC Ballarat",227363,15320,24800,"67kg",93.8,79
+"VIC Ballarat","day",3302,"VAN9","$4.54","VIC Ballarat",241299,16346,26186,"71kg",88.2,82
+"VIC Ballarat","day",3303,"VAN8","$3.98","VIC Ballarat",261977,18123,27843,"77kg",100.4,81
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3701,"VAN6","$4.50","Melbourne Metro",76667,8931,19131,"23kg",92.2,85
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3702,"VAN26","$4.50","Melbourne Metro",52115,7222,16822,"15kg",90.2,80
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3703,"VAN39","$4.50","Melbourne Metro",72309,8131,17131,"21kg",97.60000000000002,75
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3704,"VAN41","$4.50","Melbourne Metro",72513,7974,14454,"21kg",115.60000000000001,54
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3705,"VAN5","$4.50","Melbourne Metro",71764,7937,17537,"21kg",105.6,80
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3706,"VAN28","$4.50","Melbourne Metro",84115,9917,19877,"25kg",89.6,83
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3707,"VAN4","$4.50","Melbourne Metro",66528,8665,19345,"20kg",102.2,89
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3708,"VAN49","$4.50","Melbourne Metro",82977,10136,21296,"24kg",100.6,93
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3709,"VAN43","$4.50","Melbourne Metro",82505,9605,20405,"24kg",99,90
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3710,"VAN7","$4.50","Melbourne Metro",68949,9130,19690,"20kg",97,88
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3711,"VAN16","$4.50","Melbourne Metro",76094,9271,20551,"22kg",101.80000000000001,94
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3712,"VAN14","$4.50","VIC Outer Melbourne West",127694,14003,25872,"38kg",96.20000000000002,84
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3713,"VAN11","$4.50","VIC Outer Melbourne West",195456,16910,27950,"58kg",102.79999999999998,92
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3714,"VAN47","$4.50","VIC Outer Melbourne West",160616,16351,26551,"47kg",97.60000000000001,85
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3715,"VAN40","$4.50","VIC Outer Melbourne West",190839,18817,30097,"56kg",102.60000000000001,94
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3716,"VAN2","$4.50","VIC Outer Melbourne West",189061,19137,30177,"56kg",104.4,92
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3717,"VAN35","$4.50","VIC Outer Melbourne West",162447,17503,27583,"48kg",89.00000000000001,84
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3718,"VAN25","$4.50","VIC Outer Melbourne West",179166,18388,29668,"53kg",98.60000000000002,94
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3719,"VAN1","$4.50","Melbourne Metro",157417,15441,26001,"46kg",99.2,88
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3720,"VAN8","$4.50","VIC Outer Melbourne West",188036,17249,27209,"55kg",97.20000000000002,83
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3721,"VAN30","$4.50","VIC Outer Melbourne West",195627,17547,27987,"58kg",100.60000000000001,87
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3722,"VAN3","$4.50","VIC Outer Melbourne West",194676,19245,29565,"57kg",92.60000000000001,86
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3723,"VAN29","$4.68","VIC Outer Melbourne West",224363,19330,27850,"66kg",88.00000000000001,71
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3724,"VAN20","$4.50","Melbourne Metro",167597,16806,26166,"49kg",91.4,78
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3725,"VAN13","$4.50","Melbourne Metro",191688,17324,27644,"57kg",93.4,86
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3726,"VAN48","$4.50","VIC Outer Melbourne West",178699,17115,26835,"53kg",83.20000000000002,81
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3727,"VAN45","$4.50","VIC Outer Melbourne West",199320,19852,30172,"59kg",88.6,86
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3728,"VAN12","$4.50","Melbourne Metro",154010,15476,25796,"45kg",91.6,86
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3729,"VAN31","$4.50","Melbourne Metro",141049,15283,25723,"42kg",91.80000000000001,87
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3730,"VAN37","$4.50","Melbourne Metro",170379,17130,27450,"50kg",91.4,86
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3731,"VAN10","$4.50","Melbourne Metro",162724,15843,25683,"48kg",98,82
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3732,"VAN21","$4.50","Melbourne Metro",176538,18845,30191,"52kg",86.60000000000002,80
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3733,"VAN23","$4.50","Melbourne Metro",197221,19718,31546,"58kg",84.6,77
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3734,"VAN44","$4.50","Melbourne Metro",166994,18008,27248,"49kg",100.60000000000002,77
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3735,"VAN46","$4.31","VIC Mornington Peninsula",179762,17135,26735,"53kg",81.20000000000002,80
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3736,"VAN24","$3.38","VIC Mornington Peninsula",156082,16041,29672,"46kg",103.60000000000001,91
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3737,"VAN9","$4.36","VIC Mornington Peninsula",196868,15235,25645,"58kg",80.19999999999999,72
+"VIC Melbourne Metro & VIC Mornington Peninsula & VIC Outer Melbourne West & VIC Melbourne Metro Inner","day",3738,"VAN19","$4.64","VIC Mornington Peninsula",202751,16545,27565,"60kg",75.4,72
+"VIC Bendigo","day",3500,"VAN4","$5.08","VIC Bendigo",338551,22446,32526,"100kg",88.6,84
+"VIC Bendigo","day",3501,"VAN3","$5.97","VIC Bendigo",463518,26699,35459,"137kg",75.4,73
+"VIC Bendigo","day",3502,"VAN5","$5.07","VIC Bendigo",285878,19756,29956,"84kg",88.8,85
+"VIC Bendigo","day",3503,"VAN2","$4.92","VIC Bendigo",287261,19783,29863,"85kg",91.4,84
+"VIC Bendigo","day",3504,"VAN32","$4.74","VIC Bendigo",167706,14706,25146,"49kg",95,87
+"VIC Geelong & VIC Geelong Regional - Lorne & VIC Geelong Regional - Apollo Bay","day",3207,"VAN1","$3.79","VIC Geelong",331602,24849,34569,"98kg",99.00000000000001,81
+"VIC Geelong & VIC Geelong Regional - Lorne & VIC Geelong Regional - Apollo Bay","day",3208,"VAN2","$4.64","VIC Geelong",251888,19655,29255,"74kg",80.8,80
+"VIC Geelong & VIC Geelong Regional - Lorne & VIC Geelong Regional - Apollo Bay","day",3209,"VAN3","$4.49","VIC Geelong",243419,19888,29488,"72kg",83.60000000000001,80
+"VIC Geelong & VIC Geelong Regional - Lorne & VIC Geelong Regional - Apollo Bay","day",3210,"VAN4","$5.40","VIC Geelong Regional - Apollo Bay",389713,26401,35881,"115kg",92.6,79
