@@ -8,3 +8,4 @@ branca
 openpyxl
 plotly
 scipy
+keplergl
