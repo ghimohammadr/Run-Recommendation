@@ -75,17 +75,18 @@ if upload_1 and upload_2 and hist_file:
     def highlight_table(val, column_name):
         """Apply background color based on column category."""
         if column_name == "Need to be refined":
-            return 'background-color: red; color: white'
+            return "background-color: red; color: white"
         elif column_name == "Can be refined":
-            return 'background-color: orange; color: white'
+            return "background-color: orange; color: white"
         elif column_name == "Good":
-            return 'background-color: lightgreen; color: black'
-        return ''
+            return "background-color: lightgreen; color: black"
+        return ""
+
 
     # Apply the style to the DataFrame
-    styled_df = table_df.style.applymap(lambda val: highlight_table(val, "Need to be refined"), subset=["Need to be refined"]) \
-                            .applymap(lambda val: highlight_table(val, "Can be refined"), subset=["Can be refined"]) \
-                            .applymap(lambda val: highlight_table(val, "Good"), subset=["Good"])
+    styled_df = table_df.style.map(lambda val: highlight_table(val, "Need to be refined"), subset=["Need to be refined"]) \
+                            .map(lambda val: highlight_table(val, "Can be refined"), subset=["Can be refined"]) \
+                            .map(lambda val: highlight_table(val, "Good"), subset=["Good"])
 
     # Display the table in Streamlit
     st.subheader("📊 Route Client Classification Table")
