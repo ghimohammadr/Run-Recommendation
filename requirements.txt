@@ -6,3 +6,4 @@ streamlit-folium
 matplotlib
 branca
 openpyxl
+plotly
