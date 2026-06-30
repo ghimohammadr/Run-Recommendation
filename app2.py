@@ -4,141 +4,302 @@ import numpy as np
 import folium
 import matplotlib.pyplot as plt
 from streamlit_folium import folium_static
-# from branca.element import Template, MacroElement
-from branca.element import Element, Html
+from branca.element import Element
 
 
-# Streamlit UI
+# -----------------------------
+# Page setup
+# -----------------------------
+st.set_page_config(page_title="Route Recommendation Tool", layout="wide")
 st.title("File Upload and Analysis Tool")
 
-# Upload files
-upload_1 = st.file_uploader("Upload Route Stats CSV File", type=["csv"])
-upload_2 = st.file_uploader("Upload Drop Stats CSV File", type=["csv"])
-hist_file = st.file_uploader("Upload Historical Runs File (Excel)", type=["xlsx"])
 
-if upload_1 and upload_2 and hist_file:
-    # Read historical runs file
-    hist_df = pd.read_excel(hist_file)
-    hist_df = hist_df.dropna(subset=['Round']).reset_index(drop=True)
-    hist_df = hist_df[hist_df['Planned Distance'] != 'NaNkm'].reset_index(drop=True)
-    hist_df[['completed Drops', 'Total Drops']] = hist_df['Completed'].str.split('/', expand=True).apply(pd.to_numeric)
-    hist_df['distance'] = hist_df['Planned Distance'].str.replace('km', '', regex=True).astype(int)
-    hist_df['KM Cost'] = np.maximum((hist_df['distance'] - 200) * 1, 0)
-    hist_df['Drop Cost'] = np.maximum((hist_df['completed Drops'] - 70) * 4.5, 0)
-    
-    st.write("### Historical Data Stats")
-    st.write(f"No. of runs: {len(hist_df.groupby(['Round', 'Pln Finish Date']).count())}")
-    st.write(f"No. of drops: {int(hist_df['completed Drops'].sum())}")
-    st.write(f"Max Km Bonus cost: {hist_df['KM Cost'].max()}")
-    st.write(f"Min Km Bonus cost: {hist_df['KM Cost'].min()}")
-    st.write(f"Avg Km Bonus cost: {round(hist_df['KM Cost'].mean(), 2)}")
-    st.write(f"Max Drop Bonus cost: {hist_df['Drop Cost'].max()}")
-    st.write(f"Min Drop Bonus cost: {hist_df['Drop Cost'].min()}")
-    st.write(f"Avg Drop Bonus cost: {round(hist_df['Drop Cost'].mean(), 2)}")
-    
-    # Read uploaded CSVs
-    route_stats = pd.read_csv(upload_1)
-    drops_stats = pd.read_csv(upload_2)
-    
-    routes_metro = route_stats[route_stats['rateZone'] == 'Melbourne Metro'].reset_index(drop=True)
-    drops_metro = drops_stats[drops_stats['RouteId'].isin(routes_metro['routeClient'].values.tolist())].reset_index(drop=True)
-    
-    routes_metro['KM Cost'] = np.maximum((routes_metro['drivingDistance'] / 1000 - 200) * 1, 0)
-    routes_metro['No. of overloaded drops'] = np.maximum(routes_metro['d2'] - 70, 0)
-    routes_metro['Drop Cost'] = np.maximum((routes_metro['d2'] - 70) * 4.5, 0)
-    routes_metro['Flat Rate'] = 350
-    routes_metro['Total Cost'] = routes_metro['KM Cost'] + routes_metro['Drop Cost'] + routes_metro['Flat Rate']
-    
-    # if len(routes_metro[routes_metro['No. of overloaded drops'] <= 0]) > 0:
-    #     st.write("Routes with capacity:", routes_metro[routes_metro['No. of overloaded drops'] <= 0][['routeClient', 'No. of overloaded drops']])
-    
+# -----------------------------
+# Helper functions
+# -----------------------------
+def check_required_columns(df, required_cols, file_name):
+    missing = [col for col in required_cols if col not in df.columns]
+    if missing:
+        st.error(f"{file_name} is missing these columns: {missing}")
+        st.stop()
 
-    # Define categories based on conditions
-    need_to_be_refined = routes_metro[(routes_metro['d2'] < 70) & (routes_metro['drivingDistance']/1000 > 200)]['routeClient'].values.tolist()
-    good = routes_metro[(routes_metro['d2'] >= 70) & (routes_metro['drivingDistance']/1000 < 200)]['routeClient'].values.tolist()
-    # can_be_refined = routes_metro[(routes_metro['d2'] < 70) | (routes_metro['drivingDistance']/1000 > 200)]['routeClient'].values.tolist()
 
-    # Define 'Can be refined' as those that are neither in 'Need to be refined' nor in 'Good'
-    all_routes = set(routes_metro['routeClient'])
+def clean_historical_data(hist_df):
+    hist_df = hist_df.copy()
+
+    check_required_columns(
+        hist_df,
+        ["Round", "Pln Finish Date", "Completed", "Planned Distance"],
+        "Historical Runs File"
+    )
+
+    hist_df = hist_df.dropna(subset=["Round"]).reset_index(drop=True)
+
+    # Clean completed drops
+    completed_split = hist_df["Completed"].astype(str).str.split("/", expand=True)
+    hist_df["completed Drops"] = pd.to_numeric(completed_split[0], errors="coerce")
+    hist_df["Total Drops"] = pd.to_numeric(completed_split[1], errors="coerce")
+
+    # Clean planned distance
+    hist_df["distance"] = (
+        hist_df["Planned Distance"]
+        .astype(str)
+        .str.replace("km", "", regex=False)
+        .str.strip()
+    )
+    hist_df["distance"] = pd.to_numeric(hist_df["distance"], errors="coerce")
+
+    # Remove rows with invalid distance or completed drops
+    hist_df = hist_df.dropna(subset=["distance", "completed Drops"]).reset_index(drop=True)
+
+    # Costs
+    hist_df["KM Cost"] = np.maximum((hist_df["distance"] - 200) * 1, 0)
+    hist_df["Drop Cost"] = np.maximum((hist_df["completed Drops"] - 70) * 4.5, 0)
+
+    return hist_df
+
+
+def classify_routes(routes_df):
+    routes_df = routes_df.copy()
+
+    routes_df["distance_km"] = routes_df["drivingDistance"] / 1000
+    routes_df["KM Cost"] = np.maximum((routes_df["distance_km"] - 200) * 1, 0)
+    routes_df["No. of overloaded drops"] = np.maximum(routes_df["d2"] - 70, 0)
+    routes_df["Drop Cost"] = np.maximum((routes_df["d2"] - 70) * 4.5, 0)
+    routes_df["Flat Rate"] = 350
+    routes_df["Total Cost"] = routes_df["KM Cost"] + routes_df["Drop Cost"] + routes_df["Flat Rate"]
+
+    need_to_be_refined = routes_df[
+        (routes_df["d2"] < 70) & (routes_df["distance_km"] > 200)
+    ]["routeClient"].tolist()
+
+    good = routes_df[
+        (routes_df["d2"] >= 70) & (routes_df["distance_km"] <= 200)
+    ]["routeClient"].tolist()
+
+    all_routes = set(routes_df["routeClient"])
     can_be_refined = list(all_routes - set(need_to_be_refined) - set(good))
 
-    # Create a DataFrame for display
-    max_length = max(len(need_to_be_refined), len(can_be_refined), len(good))
-    table_data = {
-        "Need to be refined": need_to_be_refined + [''] * (max_length - len(need_to_be_refined)),
-        "Can be refined": can_be_refined + [''] * (max_length - len(can_be_refined)),
-        "Good": good + [''] * (max_length - len(good))
-    }
-    table_df = pd.DataFrame(table_data)
-
-    # Apply Styling with Colors
-    def highlight_table(val, column_name):
-        """Apply background color based on column category."""
-        if column_name == "Need to be refined":
-            return "background-color: red; color: white"
-        elif column_name == "Can be refined":
-            return "background-color: orange; color: white"
-        elif column_name == "Good":
-            return "background-color: lightgreen; color: black"
-        return ""
+    return routes_df, need_to_be_refined, can_be_refined, good
 
 
-    # Apply the style to the DataFrame
-    styled_df = table_df.style.map(lambda val: highlight_table(val, "Need to be refined"), subset=["Need to be refined"]) \
-                            .map(lambda val: highlight_table(val, "Can be refined"), subset=["Can be refined"]) \
-                            .map(lambda val: highlight_table(val, "Good"), subset=["Good"])
+def create_classification_table(need_to_be_refined, can_be_refined, good):
+    max_length = max(len(need_to_be_refined), len(can_be_refined), len(good), 1)
 
-    # Display the table in Streamlit
-    st.subheader("📊 Route Client Classification Table")
-    st.dataframe(styled_df)
+    table_df = pd.DataFrame({
+        "Need to be refined": need_to_be_refined + [""] * (max_length - len(need_to_be_refined)),
+        "Can be refined": can_be_refined + [""] * (max_length - len(can_be_refined)),
+        "Good": good + [""] * (max_length - len(good)),
+    })
+
+    styled_df = (
+        table_df.style
+        .set_properties(
+            subset=["Need to be refined"],
+            **{"background-color": "red", "color": "white"}
+        )
+        .set_properties(
+            subset=["Can be refined"],
+            **{"background-color": "orange", "color": "white"}
+        )
+        .set_properties(
+            subset=["Good"],
+            **{"background-color": "lightgreen", "color": "black"}
+        )
+    )
+
+    return styled_df
 
 
+def create_route_map(drops_metro):
+    drops_metro = drops_metro.copy()
 
-    # st.write("### Runs on Map")
+    # Convert coordinates safely
+    drops_metro["Latitude"] = pd.to_numeric(drops_metro["Latitude"], errors="coerce")
+    drops_metro["Longitude"] = pd.to_numeric(drops_metro["Longitude"], errors="coerce")
 
-    # Generate unique colors for routes
-    route_ids = sorted(drops_metro['RouteId'].unique())
+    # Remove invalid coordinates
+    drops_metro = drops_metro.dropna(subset=["Latitude", "Longitude"]).reset_index(drop=True)
+
+    if drops_metro.empty:
+        st.warning("No valid latitude/longitude values found for Melbourne Metro drops.")
+        return None
+
+    route_ids = sorted(drops_metro["RouteId"].dropna().unique())
     num_routes = len(route_ids)
-    colors = plt.cm.gist_ncar(np.linspace(0, 1, num_routes))
-    route_colors = {route: f'#{int(c[0]*255):02x}{int(c[1]*255):02x}{int(c[2]*255):02x}' for route, c in zip(route_ids, colors)}
-    
 
+    colors = plt.cm.gist_ncar(np.linspace(0, 1, max(num_routes, 1)))
+    route_colors = {
+        route: f"#{int(c[0] * 255):02x}{int(c[1] * 255):02x}{int(c[2] * 255):02x}"
+        for route, c in zip(route_ids, colors)
+    }
 
+    map_center = [
+        drops_metro["Latitude"].mean(),
+        drops_metro["Longitude"].mean()
+    ]
 
-    # Create a Folium map
-    m = folium.Map(location=[drops_metro['Latitude'].mean(), drops_metro['Longitude'].mean()], zoom_start=12)
+    m = folium.Map(location=map_center, zoom_start=12)
 
-    # Add points with unique colors
     for _, row in drops_metro.iterrows():
+        route_id = row["RouteId"]
+        color = route_colors.get(route_id, "#3388ff")
+
         folium.CircleMarker(
-            location=[row['Latitude'], row['Longitude']],
+            location=[row["Latitude"], row["Longitude"]],
             radius=5,
-            color=route_colors[row['RouteId']],
+            color=color,
             fill=True,
-            fill_color=route_colors[row['RouteId']],
+            fill_color=color,
             fill_opacity=0.7,
-            popup=f"Route ID: {row['RouteId']}"
+            popup=f"Route ID: {route_id}"
         ).add_to(m)
 
-    # Create legend HTML
-    legend_html = '''
-    <div style="position: fixed; 
-                bottom: 50px; left: 50px; width: auto; height: auto; 
-                overflow-y: auto; background-color: white; z-index:9999; 
-                padding: 10px; font-size:14px; border-radius:5px; 
-                box-shadow: 0px 0px 5px gray;">
+    # Legend
+    legend_html = """
+    <div style="
+        position: fixed;
+        bottom: 50px;
+        left: 50px;
+        max-height: 300px;
+        overflow-y: auto;
+        background-color: white;
+        z-index: 9999;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px gray;">
         <b>Route ID Legend</b><br>
-    '''
+    """
+
     for route, color in route_colors.items():
-        legend_html += f'<div style="display: flex; align-items: center; padding: 2px;">'
-        legend_html += f'<div style="width: 12px; height: 12px; background: {color}; margin-right: 5px;"></div>'
-        legend_html += f'<span>{route}</span></div>'
+        legend_html += f"""
+        <div style="display: flex; align-items: center; padding: 2px;">
+            <div style="width: 12px; height: 12px; background: {color}; margin-right: 5px;"></div>
+            <span>{route}</span>
+        </div>
+        """
 
-    legend_html += '</div>'
+    legend_html += "</div>"
 
-    # Add legend as HTML element to map
-    legend = Element(legend_html)
-    m.get_root().html.add_child(legend)
+    m.get_root().html.add_child(Element(legend_html))
 
-    # Display the map in Streamlit
-    folium_static(m)
+    return m
+
+
+# -----------------------------
+# Upload files
+# -----------------------------
+upload_1 = st.file_uploader("Upload Route Stats CSV File", type=["csv"])
+upload_2 = st.file_uploader("Upload Drop Stats CSV File", type=["csv"])
+hist_file = st.file_uploader("Upload Historical Runs File Excel", type=["xlsx"])
+
+
+# -----------------------------
+# Main app
+# -----------------------------
+if upload_1 and upload_2 and hist_file:
+
+    route_stats = pd.read_csv(upload_1)
+    drops_stats = pd.read_csv(upload_2)
+    hist_df = pd.read_excel(hist_file)
+
+    check_required_columns(
+        route_stats,
+        ["rateZone", "routeClient", "drivingDistance", "d2"],
+        "Route Stats CSV"
+    )
+
+    check_required_columns(
+        drops_stats,
+        ["RouteId", "Latitude", "Longitude"],
+        "Drop Stats CSV"
+    )
+
+    # -----------------------------
+    # Historical data
+    # -----------------------------
+    hist_df = clean_historical_data(hist_df)
+
+    st.write("### Historical Data Stats")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric("No. of runs", len(hist_df.groupby(["Round", "Pln Finish Date"])))
+        st.metric("No. of drops", int(hist_df["completed Drops"].sum()))
+
+    with col2:
+        st.metric("Max KM Bonus Cost", round(hist_df["KM Cost"].max(), 2))
+        st.metric("Min KM Bonus Cost", round(hist_df["KM Cost"].min(), 2))
+        st.metric("Avg KM Bonus Cost", round(hist_df["KM Cost"].mean(), 2))
+
+    with col3:
+        st.metric("Max Drop Bonus Cost", round(hist_df["Drop Cost"].max(), 2))
+        st.metric("Min Drop Bonus Cost", round(hist_df["Drop Cost"].min(), 2))
+        st.metric("Avg Drop Bonus Cost", round(hist_df["Drop Cost"].mean(), 2))
+
+    # -----------------------------
+    # Melbourne Metro route filtering
+    # -----------------------------
+    routes_metro = route_stats[
+        route_stats["rateZone"] == "Melbourne Metro"
+    ].copy().reset_index(drop=True)
+
+    if routes_metro.empty:
+        st.warning("No routes found for rateZone = Melbourne Metro.")
+        st.stop()
+
+    drops_metro = drops_stats[
+        drops_stats["RouteId"].isin(routes_metro["routeClient"])
+    ].copy().reset_index(drop=True)
+
+    if drops_metro.empty:
+        st.warning("No matching drops found for the Melbourne Metro routes.")
+        st.stop()
+
+    # -----------------------------
+    # Route classification
+    # -----------------------------
+    routes_metro, need_to_be_refined, can_be_refined, good = classify_routes(routes_metro)
+
+    st.subheader("📊 Route Client Classification Table")
+
+    styled_df = create_classification_table(
+        need_to_be_refined,
+        can_be_refined,
+        good
+    )
+
+    st.dataframe(styled_df, use_container_width=True)
+
+    # Optional route summary
+    st.subheader("Route Cost Summary")
+    st.dataframe(
+        routes_metro[
+            [
+                "routeClient",
+                "d2",
+                "distance_km",
+                "KM Cost",
+                "Drop Cost",
+                "Flat Rate",
+                "Total Cost",
+                "No. of overloaded drops"
+            ]
+        ],
+        use_container_width=True
+    )
+
+    # -----------------------------
+    # Map
+    # -----------------------------
+    st.subheader("🗺️ Runs on Map")
+
+    route_map = create_route_map(drops_metro)
+
+    if route_map is not None:
+        folium_static(route_map, width=1200, height=700)
+
+else:
+    st.info("Please upload all three files to start the analysis.")
