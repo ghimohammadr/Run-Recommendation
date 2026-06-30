@@ -256,7 +256,7 @@ if upload_1 and upload_2 and hist_file:
 
     if drops_metro.empty:
         st.warning("No matching drops found for the Melbourne Metro routes.")
-        st.stop()
+        # st.stop()
 
     # -----------------------------
     # Route classification
