@@ -8,3 +8,6 @@ branca
 openpyxl
 plotly
 scipy
+requests
+scipy
+tabulate
