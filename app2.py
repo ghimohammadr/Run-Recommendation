@@ -465,8 +465,8 @@ if upload_1 and upload_2 and hist_file:
     routes_metro['Flat Rate'] = 350
     routes_metro['Total Cost'] = routes_metro['KM Cost'] + routes_metro['Drop Cost'] + routes_metro['Flat Rate']
     
-    # if len(routes_metro[routes_metro['No. of overloaded drops'] <= 0]) > 0:
-    #     st.write("Routes with capacity:", routes_metro[routes_metro['No. of overloaded drops'] <= 0][['routeClient', 'No. of overloaded drops']])
+    if len(routes_metro[routes_metro['No. of overloaded drops'] <= 0]) > 0:
+        st.write("Routes with capacity:", routes_metro[routes_metro['No. of overloaded drops'] <= 0][['routeClient', 'No. of overloaded drops']])
     
 
     # Define categories based on conditions
@@ -509,7 +509,7 @@ if upload_1 and upload_2 and hist_file:
 
 
 
-    # st.write("### Runs on Map")
+    st.write("### Runs on Map")
 
     # Generate unique colors for routes
     route_ids = sorted(drops_metro['RouteId'].unique())
