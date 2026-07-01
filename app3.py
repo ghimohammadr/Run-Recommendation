@@ -561,15 +561,15 @@ if upload_1 and upload_2:
                 ]
             }
         }
-    }
+    # }
 
-    # Create Kepler map
-    map_ = KeplerGl(height=600, config=config)
-    map_.add_data(data=drops_metro, name="drops")
-    map_.add_data(data=hull_df, name="hulls")
+    # # Create Kepler map
+    # map_ = KeplerGl(height=600, config=config)
+    # map_.add_data(data=drops_metro, name="drops")
+    # map_.add_data(data=hull_df, name="hulls")
 
-    # Display Kepler map in Streamlit
-    st.keplergl_chart(map_)
+    # # Display Kepler map in Streamlit
+    # st.keplergl_chart(map_)
 
 
 
