@@ -402,9 +402,9 @@ if upload_1 and upload_2:
         return ''
 
     # Apply the style to the DataFrame
-    styled_df = table_df.style.applymap(lambda val: highlight_table(val, "Need to be refined"), subset=["Need to be refined"]) \
-                            .applymap(lambda val: highlight_table(val, "Can be refined"), subset=["Can be refined"]) \
-                            .applymap(lambda val: highlight_table(val, "Good"), subset=["Good"])
+    styled_df = table_df.style.map(lambda val: highlight_table(val, "Need to be refined"), subset=["Need to be refined"]) \
+                            .map(lambda val: highlight_table(val, "Can be refined"), subset=["Can be refined"]) \
+                            .map(lambda val: highlight_table(val, "Good"), subset=["Good"])
 
 
     # Display the table in Streamlit
@@ -584,7 +584,7 @@ if upload_1 and upload_2:
     #     return f'background-color: {val}; color: {val};'  # Text blends with background
 
     # # Apply styles
-    # styled_df = route_colors_df.style.applymap(color_cell, subset=['Color'])
+    # styled_df = route_colors_df.style.map(color_cell, subset=['Color'])
 
     # # Streamlit App
     # # st.title("Route Colors Table")
