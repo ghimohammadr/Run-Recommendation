@@ -690,75 +690,75 @@ if upload_1 is not None and upload_2 is not None:
                 use_container_width=True,
             )
 
-    # =================================================
-    # Optimised map section
-    # =================================================
-    st.subheader("📍 Drops on Map")
+    # # =================================================
+    # # Optimised map section
+    # # =================================================
+    # st.subheader("📍 Drops on Map")
 
-    if routes_metro is not None and not routes_metro.empty and not drops_stats.empty:
+    # if routes_metro is not None and not routes_metro.empty and not drops_stats.empty:
 
-        drops_metro, map_missing = prepare_map_data(
-            drops_stats,
-            routes_metro["routeClient"].astype(str).tolist(),
-        )
+    #     drops_metro, map_missing = prepare_map_data(
+    #         drops_stats,
+    #         routes_metro["routeClient"].astype(str).tolist(),
+    #     )
 
-        if map_missing:
-            st.warning(f"Drop Stats CSV is missing these columns: {map_missing}")
+    #     if map_missing:
+    #         st.warning(f"Drop Stats CSV is missing these columns: {map_missing}")
 
-        elif drops_metro.empty:
-            st.warning("No valid matching drops found for metro routes.")
+    #     elif drops_metro.empty:
+    #         st.warning("No valid matching drops found for metro routes.")
 
-        else:
-            st.info(
-                f"{len(drops_metro):,} valid matching drops are available for mapping. "
-                "The map will only run when you click Generate map."
-            )
+    #     else:
+    #         st.info(
+    #             f"{len(drops_metro):,} valid matching drops are available for mapping. "
+    #             "The map will only run when you click Generate map."
+    #         )
 
-            with st.form("map_controls"):
-                map_mode = st.selectbox(
-                    "Map mode",
-                    [
-                        "Fast clustered map",
-                        "Coloured points by route",
-                    ],
-                    index=0,
-                    help="Fast clustered map is recommended for large files. Coloured points by route is slower.",
-                )
+    #         with st.form("map_controls"):
+    #             map_mode = st.selectbox(
+    #                 "Map mode",
+    #                 [
+    #                     "Fast clustered map",
+    #                     "Coloured points by route",
+    #                 ],
+    #                 index=0,
+    #                 help="Fast clustered map is recommended for large files. Coloured points by route is slower.",
+    #             )
 
-                max_points = st.slider(
-                    "Maximum points to draw on map",
-                    min_value=500,
-                    max_value=50000,
-                    value=10000,
-                    step=500,
-                    help="Lower this if the map is slow.",
-                )
+    #             max_points = st.slider(
+    #                 "Maximum points to draw on map",
+    #                 min_value=500,
+    #                 max_value=50000,
+    #                 value=10000,
+    #                 step=500,
+    #                 help="Lower this if the map is slow.",
+    #             )
 
-                show_hulls = st.checkbox(
-                    "Show convex hulls by route",
-                    value=False,
-                    help="This can be slow for many routes. Leave off unless needed.",
-                )
+    #             show_hulls = st.checkbox(
+    #                 "Show convex hulls by route",
+    #                 value=False,
+    #                 help="This can be slow for many routes. Leave off unless needed.",
+    #             )
 
-                generate_map = st.form_submit_button("Generate map")
+    #             generate_map = st.form_submit_button("Generate map")
 
-            if generate_map:
-                with st.spinner("Generating map. This can take longer for large files..."):
-                    route_map = create_folium_map(
-                        drops_metro=drops_metro,
-                        map_mode=map_mode,
-                        max_points=max_points,
-                        show_hulls=show_hulls,
-                    )
+    #         if generate_map:
+    #             with st.spinner("Generating map. This can take longer for large files..."):
+    #                 route_map = create_folium_map(
+    #                     drops_metro=drops_metro,
+    #                     map_mode=map_mode,
+    #                     max_points=max_points,
+    #                     show_hulls=show_hulls,
+    #                 )
 
-                    if route_map is not None:
-                        folium_static(route_map, width=1200, height=700)
+    #                 if route_map is not None:
+    #                     folium_static(route_map, width=1200, height=700)
 
-            else:
-                st.caption("Map is not generated yet, so the tables and plots above load faster.")
+    #         else:
+    #             st.caption("Map is not generated yet, so the tables and plots above load faster.")
 
-    else:
-        st.warning("Map skipped because route or drop data is not available.")
+    # else:
+    #     st.warning("Map skipped because route or drop data is not available.")
 
 else:
     st.info("Please upload both CSV files to start the analysis.")
