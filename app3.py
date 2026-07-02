@@ -639,7 +639,7 @@ if upload_1 is not None and upload_2 is not None:
             round_stats_df = build_round_stats(dow_hist_df)
             plot_round_stats(round_stats_df)
 
-            st.write("#### Minum Run cost Statistics for", day_of_week)
+            st.write("#### Minimum Run cost Statistics for", day_of_week)
             st.dataframe(round_stats_df, use_container_width=True)
 
     # =================================================
